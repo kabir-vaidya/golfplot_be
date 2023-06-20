@@ -1,14 +1,12 @@
 package com.golfplot.api.student;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Data
 @Table(name = "student")
 public class Student{
     @Getter

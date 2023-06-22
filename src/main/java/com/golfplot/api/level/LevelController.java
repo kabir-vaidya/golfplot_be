@@ -14,24 +14,20 @@ import java.util.List;
 public class LevelController {
 
     @Autowired
-    LevelRepository levelRepository;
+    LevelService levelService;
 
     @GetMapping()
     public ResponseEntity<List<Level>> getAllLevels() {
-        return new ResponseEntity<>(levelRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(levelService.getAllLevels(), HttpStatus.OK);
     }
 
     @GetMapping("/{number}")
     public ResponseEntity<Level> getLevelByNumber(@PathVariable int number) {
-        return new ResponseEntity<>(levelRepository.findByNumber(number), HttpStatus.OK);
+        return new ResponseEntity<>(levelService.getLevelByNumber(number), HttpStatus.OK);
     }
 
-    @PostMapping("/{number}")
+    @PostMapping()
     public ResponseEntity<Level> createLevelByNumber(@RequestBody CreateLevelDto createLevelDto) {
-        Level existingLevel = levelRepository.findByNumber(createLevelDto.getNumber());
-        if(existingLevel != null){
-            levelRepository.deleteById(existingLevel.id);
-        }
-        return new ResponseEntity<>(levelRepository.save(new Level(0, createLevelDto.getNumber(), createLevelDto.getTarget_equation())), HttpStatus.OK);
+        return new ResponseEntity<>(levelService.createLevelByNumber(createLevelDto), HttpStatus.OK);
     }
 }

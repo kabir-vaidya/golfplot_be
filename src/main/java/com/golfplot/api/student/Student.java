@@ -1,6 +1,7 @@
 package com.golfplot.api.student;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 @AllArgsConstructor
@@ -13,7 +14,7 @@ public class Student{
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
+    private Integer id;
 
     @Getter
     @Setter
@@ -21,5 +22,6 @@ public class Student{
 
     @Getter
     @Setter
+    @Email
     public String email;
 }
